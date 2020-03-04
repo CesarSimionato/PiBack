@@ -11,4 +11,7 @@ routes.post('/list', SalesController.index);
 routes.get('/:saleId', SalesController.show);
 routes.post('/', SalesController.store);
 
+// Apagar depois
+routes.delete('/:saleId', SalesController.delete);
+
 module.exports = app => app.use('/sales', routes);

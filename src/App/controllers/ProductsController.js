@@ -30,6 +30,7 @@ module.exports = {
         name,
         description,
         value,
+        qty,
         cookingTime,
         ingredients,
         type
@@ -40,6 +41,7 @@ module.exports = {
         name,
         description,
         value,
+        qty,
         cookingTime,
         ingredients: ingredients.split(',').map(ingredient => ingredient.trim()),
         type

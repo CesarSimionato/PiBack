@@ -15,6 +15,7 @@ const ProductsSchema = new mongoose.Schema({
     type: Number,
     required: true
   },
+  qty: Number,
   cookingTime: String,
   ingredients: [String],
   type: {

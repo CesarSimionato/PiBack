@@ -9,16 +9,18 @@ module.exports = {
 
       let sales;
 
-      if(whoOrders === 'client'); {
+      if(whoOrders === 'client') {
         try {
+          
           const { client_id } = req.body;
-          sales = await Sales.find({ client: client_id }).populate('client').populate('store');
+          sales = await Sales.find({ client : client_id }).populate('client').populate('store');
+  
         } catch (err) {
           res.status(400).send({ erro: "Error listing sales for a client" });
         }
       }
 
-      if(whoOrders === 'store'); {
+      if(whoOrders === 'store') {
         try {
           const { store_id } = req.body;
           sales = await Sales.find({ store: store_id }).populate('client').populate('store');
@@ -51,7 +53,7 @@ module.exports = {
         client,
         store,
         products,
-        value,
+        amount,
         wayPayment
       } = req.body;
 
@@ -59,7 +61,7 @@ module.exports = {
         client,
         store,
         products,
-        value,
+        amount,
         wayPayment
       });
 
@@ -68,6 +70,16 @@ module.exports = {
       res.status(400).send({ erro: "Error registering this sale" });
     }
   },
+
+  // Apagar depois
+  async delete(req, res) {
+    try {
+      await Sales.findByIdAndRemove(req.params.saleId);
+      res.send();
+    } catch (err) {
+      res.status(400).send({ erro: "Error deleting this sale" });
+    }
+  }
 
 }
 

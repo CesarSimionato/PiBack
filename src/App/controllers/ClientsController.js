@@ -30,7 +30,7 @@ module.exports = {
         token: generateToken({ id: client.id })
       });
     } catch (err) {
-
+      res.status(400).send({ erro: "Error authenticating this client" });
     }
   },
 
