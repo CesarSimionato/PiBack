@@ -36,6 +36,14 @@ module.exports = {
         type
       } = req.body;
 
+      // Image
+      const {
+        originalname : imageName,
+        size : imageSize,
+        key : imageKey,
+        location: imageUrl = ""
+      } = req.file;
+
       const product = await Products.create({
         store,
         name,
@@ -44,11 +52,18 @@ module.exports = {
         qty,
         cookingTime,
         ingredients: ingredients.split(',').map(ingredient => ingredient.trim()),
-        type
+        type,
+
+        // Image
+        imageName,
+        imageSize,
+        imageKey,
+        imageUrl
       })
 
       res.send({ product })
     } catch (err) {
+      console.log(err)
       res.status(400).send({ erro: "Error listing product" });
     }
   },

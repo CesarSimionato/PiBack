@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
@@ -22,8 +24,8 @@ app.use(bodyParser.urlencoded({ extended:false }));
 // Usar Json
 app.use(express.json());
 
-// Salvar imagens na pasta uploads
-app.use('/files', express.static(path.resolve(__dirname, '..', 'uploads')));
+// Libera pasta para imagens
+app.use('/files', express.static(path.resolve(__dirname, '..', 'tmp', 'uploads')))
 
 // Envia o App pra todos as rotas 
 require('./App/routes/index')(app);
